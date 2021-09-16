@@ -12,4 +12,8 @@ export class BienvenidaPage implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    console.log('logout')
+  }
+
 }

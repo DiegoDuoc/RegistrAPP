@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
 
   ingresar(user, pass) {
     console.log(user.value, pass.value)
-   console.log('clickeado!')
+    this.router.navigate(['/bienvenida'])
   }
 
 }
