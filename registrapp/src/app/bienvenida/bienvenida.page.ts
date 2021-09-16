@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AlertController} from '@ionic/angular'
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-bienvenida',
@@ -20,7 +20,7 @@ export class BienvenidaPage implements OnInit {
       message: 'Estás seguro?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel'
         },
         {

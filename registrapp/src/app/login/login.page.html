@@ -1,19 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-center">RegistrAPP</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center" >RegistrAPP</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-text color="primary" class="ion-text-center">
+  <ion-text  class="ion-text-center">
     <h1>Ingrese sus credenciales</h1>
   </ion-text>
 
   <ion-item>
-    <ion-label position="floating">Nombre de usuario</ion-label>
+    <ion-label position="floating" color="dark">Nombre de usuario DUOC</ion-label>
     <ion-input #user></ion-input>
   </ion-item>
+
 
   <ion-item>
     <ion-label position="floating">Contraseña</ion-label>
@@ -21,12 +22,13 @@
   </ion-item>
 
   <br><br>
-  <ion-button (click)="ingresar(user, pass)" expand="full" shape="undefined">
-    INGRESAR
+  <ion-button  (click)="ingreso(user, pass)" expand="full" shape="undefined">
+    <ion-label >INGRESAR</ion-label>
   </ion-button>
   <br><br>
   <ion-button (click)="recPass()" expand="block" fill="clear" shape="round">
-    Recuperar contraseña
+    Restablecer contraseña
   </ion-button>
+ <!-- agregar imagen o algo -->
 
 </ion-content>

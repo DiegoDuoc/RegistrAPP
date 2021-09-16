@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AlertController} from '@ionic/angular';
+import {AlertController, ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import {AlertController} from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private alertCtrl: AlertController) { }
+  constructor(private router: Router, private alertCtrl: AlertController, private toastCtrl: ToastController) { }
 
   ngOnInit() {
   }
@@ -26,6 +26,31 @@ export class LoginPage implements OnInit {
       buttons: ['Aceptar']
     })
     await alert.present();
+  }
+
+  async ingreso(user: HTMLInputElement, pass: HTMLInputElement){
+    let name = "ped.gonzalezv";
+    let contra = "pedgonv123";
+    let usuario = user.value;
+    let contraseña = pass.value;
+    if(usuario == name && contraseña == contra){
+      this.router.navigate(["/bienvenida"])
+    }else if(usuario == "" || contraseña == ""){
+      const missingData = await this.toastCtrl.create({
+        message: 'Debe llenar ambos campos!',
+        duration: 2500,
+        color: 'danger'
+      })
+      await missingData.present();
+    }
+    else{
+      const wrongData = await this.toastCtrl.create({
+        message: 'Credenciales incorrectas. Por favor intente nuevamente.',
+        duration: 2500,
+        color: 'danger'
+      })
+      await wrongData.present();
+    }
   }
 
 }
