@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {AlertController} from '@ionic/angular'
 
 @Component({
   selector: 'app-bienvenida',
@@ -7,13 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BienvenidaPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
 
-  logout() {
-    console.log('logout')
+  async logout() {
+    const alertLogout = await this.alertCtrl.create({
+      header: 'Cerrar sesión',
+      message: 'Estás seguro?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Sí',
+          handler: () => {
+            this.router.navigate(['/login'])
+          }
+        }
+      ]
+    })
+    await alertLogout.present();
   }
-
 }
