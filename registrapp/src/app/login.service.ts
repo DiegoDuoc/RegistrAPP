@@ -7,7 +7,7 @@ import { Login } from './login.model';
 export class LoginService {
   private usuario: Login[] = [{
     usuario : "ped.gonzalezv",
-    password : "pedgonv123"
+    password : "pedgonv123",
   }]
 
   constructor() { }

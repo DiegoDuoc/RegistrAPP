@@ -10,6 +10,8 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  
+  users=[]
 
   constructor(private router: Router, private alertCtrl: AlertController, private toastCtrl: ToastController, private loginService: LoginService) { }
 
@@ -43,8 +45,6 @@ export class LoginPage implements OnInit {
   }
 
   async ingreso(user: HTMLInputElement, pass: HTMLInputElement){
-    let name = "ped.gonzalezv";
-    let contra = "pedgonv123";
     let usuario = user.value;
     let contraseña = pass.value;
     if(this.loginService.getUsuario(usuario) && this.loginService.getPassword(contraseña)){
@@ -68,7 +68,7 @@ export class LoginPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    
+    this.users = this.loginService.getUsuarios();
   }
 
 }
