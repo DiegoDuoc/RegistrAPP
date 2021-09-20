@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {AlertController} from '@ionic/angular';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-bienvenida',
@@ -9,9 +10,12 @@ import {AlertController} from '@ionic/angular';
 })
 export class BienvenidaPage implements OnInit {
 
-  constructor(private router: Router, private alertCtrl: AlertController) { }
+  users=[]
+
+  constructor(private router: Router, private alertCtrl: AlertController, private loginService: LoginService) { }
 
   ngOnInit() {
+    this.users = this.loginService.getUsuarios();
   }
 
   async logout() {

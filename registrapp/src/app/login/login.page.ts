@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AlertController, ToastController} from '@ionic/angular';
+import { LoginService } from '../login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,23 +11,18 @@ import {AlertController, ToastController} from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private alertCtrl: AlertController, private toastCtrl: ToastController) { }
+  constructor(private router: Router, private alertCtrl: AlertController, private toastCtrl: ToastController, private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
-  ingresar(user, pass) {
-    console.log(user.value, pass.value)
-    this.router.navigate(['/bienvenida'])
-  }
-
   async recPass() {
-    const alert = await this.alertCtrl.create({
-      header: 'Recuperación contraseña',
-      message: 'Se ha enviado un link a su correo!',
-      buttons: ['Aceptar']
-    })
-    await alert.present();
+      const alert = await this.alertCtrl.create({
+        header: 'Recuperación contraseña',
+        message: 'Se ha enviado un link a su correo!',
+        buttons: ['Aceptar']
+      })
+      await alert.present();
   }
 
   async ingreso(user: HTMLInputElement, pass: HTMLInputElement){
@@ -33,7 +30,7 @@ export class LoginPage implements OnInit {
     let contra = "pedgonv123";
     let usuario = user.value;
     let contraseña = pass.value;
-    if(usuario == name && contraseña == contra){
+    if(this.loginService.getUsuario(usuario) && this.loginService.getPassword(contraseña)){
       this.router.navigate(["/bienvenida"])
     }else if(usuario == "" || contraseña == ""){
       const missingData = await this.toastCtrl.create({
@@ -51,6 +48,10 @@ export class LoginPage implements OnInit {
       })
       await wrongData.present();
     }
+  }
+
+  ionViewWillEnter() {
+    
   }
 
 }
