@@ -16,13 +16,30 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async recPass() {
-      const alert = await this.alertCtrl.create({
-        header: 'Recuperación contraseña',
-        message: 'Se ha enviado un link a su correo!',
-        buttons: ['Aceptar']
-      })
-      await alert.present();
+  async recPass(user: HTMLInputElement){
+    let usuario = user.value;
+    if(this.loginService.getUsuario(usuario)){
+      const success = await this.toastCtrl.create({
+        message: 'Se ha enviado un link a tu correo!',
+        duration: 2500,
+        color: 'success'
+      });
+      await success.present();
+    }else if(usuario == ""){
+      const missingData = await this.toastCtrl.create({
+        message: 'Debes ingresar tu usuario de correo DuocUC!',
+        duration: 2500,
+        color: 'danger'
+      });
+      await missingData.present();
+    }else{
+      const wrongData = await this.toastCtrl.create({
+        message: 'No se encuentra este usuario, intente nuevamente.',
+        duration: 2500,
+        color: 'danger'
+      });
+      await wrongData.present();
+    }
   }
 
   async ingreso(user: HTMLInputElement, pass: HTMLInputElement){
